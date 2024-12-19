@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/maxwellt/config-repo
+          default-label: master # label is either branch, tag or commit
+          clone-on-start: true # will clone the repo on startup (if there's an issue getting the info it will fail fast + reads to this service will be quicker)
+          force-pull: true # forces pulling the remote repository and discarding any local changes
+server:
+  port: 8888
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
